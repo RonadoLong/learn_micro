@@ -1,0 +1,29 @@
+syntax = "proto3";
+package gateway;
+
+// 新增以下引入
+import "google/api/annotations.proto";
+
+message StringMessage {
+    string value = 1;
+}
+
+// 修改方法增加http定义
+// service Gateway {
+//         rpc SayHello Echo(StringMessage) returns (StringMessage) {}
+//       }
+
+service Gateway {
+    rpc Echo(StringMessage) returns (StringMessage) {
+        option (google.api.http) = {
+           post: "/v1/example/echo"
+           body: "*"
+       };
+    }
+
+    rpc Hello(StringMessage) returns (StringMessage) {
+        option (google.api.http) = {
+           get: "/v1/example/hello"
+       };
+    }
+}
