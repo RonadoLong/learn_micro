@@ -27,3 +27,7 @@ service Gateway {
        };
     }
 }
+
+message HelloReq {
+    string long = 1;
+}
